@@ -1,6 +1,7 @@
 import express, { Router } from "express";
 import serverless from "serverless-http";
 import cors from "cors";
+import axios from "axios";
 import { Client } from "@notionhq/client";
 
 const api = express();
@@ -15,6 +16,28 @@ api.use("/api/", router);
 
 router.get("/hello", (req, res) => res.send("Hello World!"));
 
+router.get("/gamelist/:id", (req, res) => {
+  // reset bundle to fix cache
+  notion = new Client({
+    auth: "secret_bosJYRpBzDUNd9bfqiQ0yWJknYA66G5ebvUhqTiy9E2",
+  });
+  (async () => {
+    const result = await getNotionData(
+      req.params.id === "initial" ? undefined : req.params.id
+    );
+
+    const trimmedResult = [];
+    result.results.forEach((gamedata) => {
+      trimmedResult.push(getGameObject(gamedata));
+    });
+    res.json(trimmedResult);
+
+    // const uniqueTrimmedResult = removeDuplicatesAndSort(trimmedResult, "id");
+
+    // res.json(uniqueTrimmedResult);
+  })();
+});
+
 router.get("/gamelist", (req, res) => {
   // reset bundle to fix cache
   notion = new Client({
@@ -23,6 +46,24 @@ router.get("/gamelist", (req, res) => {
   (async () => {
     await startNotionLooper(res);
   })();
+});
+
+router.get("/artwork", (req, res) => {
+  const headers = {
+    "Client-ID": "m83mbo6r56trenidw05tz7rl0qake9",
+    Authorization: "Bearer mgqzu153x5jc9j006dnu8iv36532td",
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  };
+
+  axios
+    .post("https://api.igdb.com/v4/games", { fields: "*" }, { headers })
+    .then((response) => {
+      res.json(response);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
 });
 
 async function startNotionLooper(res, next_cursor = undefined) {
@@ -40,15 +81,7 @@ async function startNotionLooper(res, next_cursor = undefined) {
     const trimmedResult = [];
 
     bundle.forEach((gamedata) => {
-      trimmedResult.push({
-        id: gamedata.id,
-        status: gamedata.properties.status.select.name || "",
-        rating: gamedata.properties.rating.select?.name || "",
-        image: gamedata?.properties?.cover.files[0].name || "",
-        name: gamedata?.properties?.title?.title[0].plain_text || "",
-        platform: gamedata?.properties?.platform.multi_select[0].name || "",
-        "100%": gamedata?.properties["100%"].checkbox || false,
-      });
+      trimmedResult.push(getGameObject(gamedata));
     });
 
     const uniqueTrimmedResult = removeDuplicatesAndSort(trimmedResult, "id");
@@ -64,6 +97,12 @@ async function getNotionData(next_cursor) {
   const result = await notion.databases.query({
     database_id: "1f41efa65d6e47eebe88b6313a2f9889",
     start_cursor: next_cursor,
+    sorts: [
+      {
+        property: "Name",
+        direction: "ascending",
+      },
+    ],
   });
 
   return result;
@@ -112,20 +151,14 @@ function removeDuplicatesAndSort(arr, prop) {
   ];
 }
 
-function sortByName(arr) {
-  // Use the sort method with a compare function
-  arr.sort((a, b) => {
-    // Convert names to lowercase for case-insensitive sorting
-    const nameA = a.name.toLowerCase();
-    const nameB = b.name.toLowerCase();
-
-    // Compare the names
-    if (nameA < nameB) return -1; // nameA comes before nameB
-    if (nameA > nameB) return 1; // nameA comes after nameB
-    return 0; // names are equal
-  });
-}
-
-function filterByStatus(arr, status) {
-  return arr.filter((obj) => obj.status === status);
+function getGameObject(gamedata) {
+  return {
+    id: gamedata.id,
+    status: gamedata.properties.status.select.name || "",
+    rating: gamedata.properties.rating.select?.name || "",
+    image: gamedata?.properties?.cover.files[0].name || "",
+    name: gamedata?.properties?.title?.title[0].plain_text || "",
+    platform: gamedata?.properties?.platform.multi_select[0].name || "",
+    "100%": gamedata?.properties["100%"].checkbox || false,
+  };
 }
