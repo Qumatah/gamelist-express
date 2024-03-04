@@ -1,0 +1,9 @@
+# POST https://id.twitch.tv/oauth2/token?client_id=m83mbo6r56trenidw05tz7rl0qake9&client_secret=n2ch9j40yxz8rrun8ig90g8dw7m5o7&grant_type=client_credentials
+
+
+
+POST https://api.igdb.com/v4/character_mug_shots
+Client-ID: m83mbo6r56trenidw05tz7rl0qake9
+Authorization: Bearer 1emsneq1m0bfvy9hrzxukvba9a4zwq
+Body: "fields akas,checksum,country_name,created_at,description,games,gender,mug_shot,name,slug,species,updated_at,url;"
+
