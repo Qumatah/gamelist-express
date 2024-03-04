@@ -1,0 +1,15 @@
+[functions]
+  external_node_modules = ["express", "@notionhq/client", "cors"]
+  node_bundler = "esbuild"
+
+[build]
+  functions = "functions"
+
+[dev]
+  publish = "dist"
+
+[[redirects]]
+  force = true
+  from = "/api/*"
+  status = 200
+  to = "/.netlify/functions/api/:splat"
