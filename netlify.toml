@@ -1,5 +1,5 @@
 [functions]
-  external_node_modules = ["express", "@notionhq/client", "cors"]
+  external_node_modules = ["express", "@notionhq/client", "cors", "axios"]
   node_bundler = "esbuild"
 
 [build]

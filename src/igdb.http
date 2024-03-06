@@ -1,4 +1,4 @@
-# POST https://id.twitch.tv/oauth2/token?client_id=m83mbo6r56trenidw05tz7rl0qake9&client_secret=n2ch9j40yxz8rrun8ig90g8dw7m5o7&grant_type=client_credentials
+POST https://id.twitch.tv/oauth2/token?client_id=m83mbo6r56trenidw05tz7rl0qake9&client_secret=n2ch9j40yxz8rrun8ig90g8dw7m5o7&grant_type=client_credentials
 
 
 
