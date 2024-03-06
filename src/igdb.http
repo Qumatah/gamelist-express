@@ -4,6 +4,6 @@
 
 POST https://api.igdb.com/v4/character_mug_shots
 Client-ID: m83mbo6r56trenidw05tz7rl0qake9
-Authorization: Bearer <secret>>
+Authorization: Bearer <secret>
 Body: "fields akas,checksum,country_name,created_at,description,games,gender,mug_shot,name,slug,species,updated_at,url;"
 
