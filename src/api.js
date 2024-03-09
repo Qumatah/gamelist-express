@@ -8,6 +8,7 @@ const api = express();
 const router = Router();
 
 let bundle = [];
+let cache = { date: null, data: null };
 let notion;
 
 api.use(cors());
@@ -39,35 +40,39 @@ router.get("/gamelist/:id", (req, res) => {
 });
 
 router.get("/gamelist", (req, res) => {
-  // reset bundle to fix cache
-  notion = new Client({
-    auth: "secret_bosJYRpBzDUNd9bfqiQ0yWJknYA66G5ebvUhqTiy9E2",
-  });
   (async () => {
+    notion = await new Client({
+      auth: "secret_bosJYRpBzDUNd9bfqiQ0yWJknYA66G5ebvUhqTiy9E2",
+    });
     await startNotionLooper(res);
   })();
 });
 
-router.get("/artwork", (req, res) => {
-  const headers = {
-    "Client-ID": "m83mbo6r56trenidw05tz7rl0qake9",
-    Authorization: "Bearer mgqzu153x5jc9j006dnu8iv36532td",
-    "Content-Type": "application/json",
-    Accept: "application/json",
-  };
+// router.get("/artwork", (req, res) => {
+//   const headers = {
+//     "Client-ID": "m83mbo6r56trenidw05tz7rl0qake9",
+//     Authorization: "Bearer mgqzu153x5jc9j006dnu8iv36532td",
+//     "Content-Type": "application/json",
+//     Accept: "application/json",
+//   };
 
-  axios
-    .post("https://api.igdb.com/v4/games", { fields: "*" }, { headers })
-    .then((response) => {
-      res.json(response);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
-});
+//   axios
+//     .post("https://api.igdb.com/v4/games", { fields: "*" }, { headers })
+//     .then((response) => {
+//       res.json(response);
+//     })
+//     .catch((err) => {
+//       res.json(err);
+//     });
+// });
 
 async function startNotionLooper(res, next_cursor = undefined) {
   let result = await getNotionData(next_cursor);
+
+  // Just return cache if unchanged
+  if (result.last_edited_time === cache.date) {
+    return res.json(cache.data);
+  }
 
   // on response, add result to bundle
   bundle = [...bundle, ...result.results];
@@ -88,6 +93,9 @@ async function startNotionLooper(res, next_cursor = undefined) {
 
     bundle.splice(0, bundle.length);
 
+    cache.date = result.last_edited_time;
+    cache.data = uniqueTrimmedResult;
+
     // once done, return the bundle
     res.json(uniqueTrimmedResult);
   }
@@ -99,7 +107,7 @@ async function getNotionData(next_cursor) {
     start_cursor: next_cursor,
     sorts: [
       {
-        property: "Name",
+        property: "title",
         direction: "ascending",
       },
     ],
@@ -159,6 +167,6 @@ function getGameObject(gamedata) {
     image: gamedata?.properties?.cover.files[0].name || "",
     name: gamedata?.properties?.title?.title[0].plain_text || "",
     platform: gamedata?.properties?.platform.multi_select[0].name || "",
-    "100%": gamedata?.properties["100%"].checkbox || false,
+    completed: gamedata?.properties["100%"].checkbox || false,
   };
 }
