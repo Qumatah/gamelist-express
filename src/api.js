@@ -8,6 +8,7 @@ const api = express();
 const router = Router();
 
 let bundle = [];
+// TODO: CAHCE DOES NOT WORK SINCE IT IS SAVED PER ITEM, so there is no way of knowing if anything changed in the whole list beforehand
 let cache = { date: null, data: null };
 let notion;
 
@@ -18,7 +19,6 @@ api.use("/api/", router);
 router.get("/hello", (req, res) => res.send("Hello World!"));
 
 router.get("/gamelist/:id", (req, res) => {
-  // reset bundle to fix cache
   notion = new Client({
     auth: "secret_bosJYRpBzDUNd9bfqiQ0yWJknYA66G5ebvUhqTiy9E2",
   });
@@ -70,9 +70,9 @@ async function startNotionLooper(res, next_cursor = undefined) {
   let result = await getNotionData(next_cursor);
 
   // Just return cache if unchanged
-  if (result.last_edited_time === cache.date) {
-    return res.json(cache.data);
-  }
+  // if (result.last_edited_time === cache.date) {
+  //   return res.json(cache.data);
+  // }
 
   // on response, add result to bundle
   bundle = [...bundle, ...result.results];
@@ -93,8 +93,8 @@ async function startNotionLooper(res, next_cursor = undefined) {
 
     bundle.splice(0, bundle.length);
 
-    cache.date = result.last_edited_time;
-    cache.data = uniqueTrimmedResult;
+    // cache.date = result.last_edited_time;
+    // cache.data = uniqueTrimmedResult;
 
     // once done, return the bundle
     res.json(uniqueTrimmedResult);
