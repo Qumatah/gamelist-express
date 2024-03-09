@@ -7,9 +7,9 @@ import { Client } from "@notionhq/client";
 const api = express();
 const router = Router();
 
+let run;
 let bundle = [];
-// TODO: CAHCE DOES NOT WORK SINCE IT IS SAVED PER ITEM, so there is no way of knowing if anything changed in the whole list beforehand
-// let cache = { date: null, data: null };
+let cache = { date: null, data: null };
 let notion;
 
 api.use(cors());
@@ -44,7 +44,8 @@ router.get("/gamelist", (req, res) => {
     notion = await new Client({
       auth: "secret_bosJYRpBzDUNd9bfqiQ0yWJknYA66G5ebvUhqTiy9E2",
     });
-    await startNotionLooper(res);
+    run = 1;
+    await startNotionLooper(res, undefined, run);
   })();
 });
 
@@ -66,13 +67,20 @@ router.get("/gamelist", (req, res) => {
 //     });
 // });
 
-async function startNotionLooper(res, next_cursor = undefined) {
+async function startNotionLooper(res, next_cursor = undefined, run = 1) {
   let result = await getNotionData(next_cursor);
 
-  // Just return cache if unchanged
-  // if (result.last_edited_time === cache.date) {
-  //   return res.json(cache.data);
-  // }
+  if (run === 1) {
+    if (result.results[0].last_edited_time === cache.date) {
+      // nothing changed, return cache
+      console.log("cache hit");
+      return res.json(cache.data);
+    } else {
+      // set cache date and keep going
+      cache.date = result.results[0].last_edited_time;
+    }
+  }
+
 
   // on response, add result to bundle
   bundle = [...bundle, ...result.results];
@@ -80,8 +88,9 @@ async function startNotionLooper(res, next_cursor = undefined) {
   if (result.has_more) {
     // if this is not all, do it again using the new next_cursor
     next_cursor = result.next_cursor;
-    console.log("retrying using ", next_cursor);
-    await startNotionLooper(res, next_cursor);
+    console.log("requesting new data using", next_cursor);
+    run = run + 1;
+    await startNotionLooper(res, next_cursor, run);
   } else {
     const trimmedResult = [];
 
@@ -93,8 +102,8 @@ async function startNotionLooper(res, next_cursor = undefined) {
 
     bundle.splice(0, bundle.length);
 
-    // cache.date = result.last_edited_time;
-    // cache.data = uniqueTrimmedResult;
+    // set final as cache
+    cache.data = uniqueTrimmedResult;
 
     // once done, return the bundle
     res.json(uniqueTrimmedResult);
@@ -107,8 +116,8 @@ async function getNotionData(next_cursor) {
     start_cursor: next_cursor,
     sorts: [
       {
-        property: "title",
-        direction: "ascending",
+        timestamp: "last_edited_time",
+        direction: "descending",
       },
     ],
   });
