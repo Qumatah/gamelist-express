@@ -9,7 +9,7 @@ const router = Router();
 
 let bundle = [];
 // TODO: CAHCE DOES NOT WORK SINCE IT IS SAVED PER ITEM, so there is no way of knowing if anything changed in the whole list beforehand
-let cache = { date: null, data: null };
+// let cache = { date: null, data: null };
 let notion;
 
 api.use(cors());
