@@ -81,7 +81,6 @@ async function startNotionLooper(res, next_cursor = undefined, run = 1) {
     }
   }
 
-
   // on response, add result to bundle
   bundle = [...bundle, ...result.results];
 
@@ -189,6 +188,6 @@ function getGameObject(gamedata) {
     image: gamedata?.properties?.cover.files[0].name || "",
     name: gamedata?.properties?.title?.title[0].plain_text || "",
     platform: gamedata?.properties?.platform.multi_select[0].name || "",
-    finished: gamedata?.properties["100%"].checkbox || false,
+    finished: gamedata?.properties?.completed.checkbox || false,
   };
 }
