@@ -151,12 +151,25 @@ function removeDuplicatesAndSort(arr, prop) {
     }
   }
 
-  return [
-    ...groupedByStatus.playing,
-    ...groupedByStatus.replaying,
-    ...groupedByStatus.queued,
-    ...groupedByStatus.completed,
-  ];
+  let result = [];
+
+  if (groupedByStatus.playing) {
+    result = [...result, ...groupedByStatus.playing];
+  }
+
+  if (groupedByStatus.replaying) {
+    result = [...result, ...groupedByStatus.replaying];
+  }
+
+  if (groupedByStatus.queued) {
+    result = [...result, ...groupedByStatus.queued];
+  }
+
+  if (groupedByStatus.finished) {
+    result = [...result, ...groupedByStatus.finished];
+  }
+
+  return result;
 }
 
 function getGameObject(gamedata) {
@@ -167,6 +180,6 @@ function getGameObject(gamedata) {
     image: gamedata?.properties?.cover.files[0].name || "",
     name: gamedata?.properties?.title?.title[0].plain_text || "",
     platform: gamedata?.properties?.platform.multi_select[0].name || "",
-    completed: gamedata?.properties["100%"].checkbox || false,
+    finished: gamedata?.properties["100%"].checkbox || false,
   };
 }
