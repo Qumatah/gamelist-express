@@ -188,6 +188,6 @@ function getGameObject(gamedata) {
     image: gamedata?.properties?.cover.files[0].name || "",
     name: gamedata?.properties?.title?.title[0].plain_text || "",
     platform: gamedata?.properties?.platform.multi_select[0].name || "",
-    finished: gamedata?.properties?.completed.checkbox || false,
+    completed: gamedata?.properties?.completed.checkbox || false,
   };
 }
