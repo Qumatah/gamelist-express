@@ -1,0 +1,432 @@
+[
+  {
+    "object": "page",
+    "id": "1166b583-229a-812e-8609-e25c884d21cb",
+    "created_time": "2024-10-05T16:39:00.000Z",
+    "last_edited_time": "2024-10-05T19:40:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "df1cf432-182e-4090-a908-84feff418a6f"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "df1cf432-182e-4090-a908-84feff418a6f"
+    },
+    "cover": null,
+    "icon": null,
+    "parent": {
+      "type": "database_id",
+      "database_id": "1166b583-229a-80f4-a431-e9b43908ff61"
+    },
+    "archived": false,
+    "in_trash": false,
+    "properties": {
+      "cooldown": {
+        "id": "%3AAmj",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": { "content": "2,2,2,2,0,-2,0,0", "link": null },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "2,2,2,2,0,-2,0,0",
+            "href": null
+          }
+        ]
+      },
+      "core": {
+        "id": "%3E%5CM~",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": { "content": "0,8,8,0,8,3", "link": null },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "0,8,8,0,8,3",
+            "href": null
+          }
+        ]
+      },
+      "element": {
+        "id": "QwCW",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": { "content": "0,0,2,1,0,0", "link": null },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "0,0,2,1,0,0",
+            "href": null
+          }
+        ]
+      },
+      "class": {
+        "id": "YfBN",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": { "content": "28,15,0", "link": null },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "28,15,0",
+            "href": null
+          }
+        ]
+      },
+      "hp": { "id": "gEq%3D", "type": "number", "number": 11 },
+      "race": { "id": "h_kh", "type": "number", "number": 1 },
+      "skill": {
+        "id": "qIxm",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "217,218,219,220,221,222,223,224,114,117,118",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "217,218,219,220,221,222,223,224,114,117,118",
+            "href": null
+          }
+        ]
+      },
+      "equipment": {
+        "id": "t%60DR",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": { "content": "55,83,96,50,50,96,18,0,96", "link": null },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "55,83,96,50,50,96,18,0,96",
+            "href": null
+          }
+        ]
+      },
+      "filter": {
+        "id": "yzXW",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": { "content": "2,1,2,2,1,2,1,1,2", "link": null },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "2,1,2,2,1,2,1,1,2",
+            "href": null
+          }
+        ]
+      },
+      "level": { "id": "zURT", "type": "number", "number": 6 },
+      "ability": {
+        "id": "zZam",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "0,12,0,6,4,2,0,3,5,0,0,0,0,3,7,2,2,2",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "0,12,0,6,4,2,0,3,5,0,0,0,0,3,7,2,2,2",
+            "href": null
+          }
+        ]
+      },
+      "name": {
+        "id": "title",
+        "type": "title",
+        "title": [
+          {
+            "type": "text",
+            "text": { "content": "Slumpus", "link": null },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Slumpus",
+            "href": null
+          }
+        ]
+      }
+    },
+    "url": "https://www.notion.so/Slumpus-1166b583229a812e8609e25c884d21cb",
+    "public_url": null
+  },
+  {
+    "object": "page",
+    "id": "1166b583-229a-81dc-a3fa-faa7cfe93692",
+    "created_time": "2024-10-05T16:39:00.000Z",
+    "last_edited_time": "2024-10-05T19:39:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "df1cf432-182e-4090-a908-84feff418a6f"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "df1cf432-182e-4090-a908-84feff418a6f"
+    },
+    "cover": null,
+    "icon": null,
+    "parent": {
+      "type": "database_id",
+      "database_id": "1166b583-229a-80f4-a431-e9b43908ff61"
+    },
+    "archived": false,
+    "in_trash": false,
+    "properties": {
+      "cooldown": {
+        "id": "%3AAmj",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": { "content": "2,2,2,2,0,-2,0,0", "link": null },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "2,2,2,2,0,-2,0,0",
+            "href": null
+          }
+        ]
+      },
+      "core": {
+        "id": "%3E%5CM~",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": { "content": "0,8,8,0,8,3", "link": null },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "0,8,8,0,8,3",
+            "href": null
+          }
+        ]
+      },
+      "element": {
+        "id": "QwCW",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": { "content": "0,0,2,1,0,0", "link": null },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "0,0,2,1,0,0",
+            "href": null
+          }
+        ]
+      },
+      "class": {
+        "id": "YfBN",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": { "content": "28,15,0", "link": null },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "28,15,0",
+            "href": null
+          }
+        ]
+      },
+      "hp": { "id": "gEq%3D", "type": "number", "number": 178 },
+      "race": { "id": "h_kh", "type": "number", "number": 2 },
+      "skill": {
+        "id": "qIxm",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "217,218,219,220,221,222,223,224,114,117,118",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "217,218,219,220,221,222,223,224,114,117,118",
+            "href": null
+          }
+        ]
+      },
+      "equipment": {
+        "id": "t%60DR",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": { "content": "55,83,96,50,50,96,18,0,96", "link": null },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "55,83,96,50,50,96,18,0,96",
+            "href": null
+          }
+        ]
+      },
+      "filter": {
+        "id": "yzXW",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": { "content": "2,1,2,2,1,2,1,1,2", "link": null },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "2,1,2,2,1,2,1,1,2",
+            "href": null
+          }
+        ]
+      },
+      "level": { "id": "zURT", "type": "number", "number": 9 },
+      "ability": {
+        "id": "zZam",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "0,12,0,6,4,2,0,3,5,0,0,0,0,3,7,2,2,2",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "0,12,0,6,4,2,0,3,5,0,0,0,0,3,7,2,2,2",
+            "href": null
+          }
+        ]
+      },
+      "name": {
+        "id": "title",
+        "type": "title",
+        "title": [
+          {
+            "type": "text",
+            "text": { "content": "coen", "link": null },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "coen",
+            "href": null
+          }
+        ]
+      }
+    },
+    "url": "https://www.notion.so/coen-1166b583229a81dca3fafaa7cfe93692",
+    "public_url": null
+  }
+]

@@ -192,14 +192,34 @@ function getGameObject(gamedata) {
   };
 }
 
+function getLLBuild(build) {
+  return {
+    id: build.id,
+    name: build.properties?.name.title[0].plain_text || "",
+    hp: build.properties?.hp.number || 0,
+    level: build.properties?.level.number || 0,
+    core: build.properties?.core.rich_text[0].plain_text || "",
+    class: build.properties?.class.rich_text[0].plain_text || "",
+    skill: build.properties?.skill.rich_text[0].plain_text || "",
+    ability: build.properties?.ability.rich_text[0].plain_text || "",
+    element: build.properties?.element.rich_text[0].plain_text || "",
+    equipment: build.properties?.equipment.rich_text[0].plain_text || "",
+    filter: build.properties?.filter.rich_text[0].plain_text || "",
+    cooldown: build.properties?.cooldown.rich_text[0].plain_text || "",
+  };
+}
+
 router.get("/ll/:id", (req, res) => {
   notion = new Client({
     auth: "secret_3Chdy721CTWbWAqsfwox0pCiVedTyLVXIIl58D7joY3",
   });
   (async () => {
-    const result = await getNotionLLData();
-
-    res.json(result.results);
+    const data = await getNotionLLData();
+    const trimmedResult = [];
+    data.results.forEach((entry) => {
+      trimmedResult.push(getLLBuild(entry));
+    });
+    res.json(trimmedResult);
   })();
 });
 
