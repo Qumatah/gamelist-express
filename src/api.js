@@ -183,12 +183,12 @@ function removeDuplicatesAndSort(arr, prop) {
 function getGameObject(gamedata) {
   return {
     id: gamedata.id,
-    status: gamedata.properties.status.select.name || "",
-    rating: gamedata.properties.rating.select?.name || "",
-    image: gamedata?.properties?.cover.files[0].name || "",
-    name: gamedata?.properties?.title?.title[0].plain_text || "",
-    platform: gamedata?.properties?.platform.multi_select[0].name || "",
-    completed: gamedata?.properties?.completed.checkbox || false,
+    status: gamedata.properties?.status.select.name || "",
+    rating: gamedata.properties?.rating.select?.name || "",
+    image: gamedata.properties?.cover.files[0].name || "",
+    name: gamedata.properties?.title?.title[0].plain_text || "",
+    platform: gamedata.properties?.platform.multi_select[0].name || "",
+    completed: gamedata.properties?.completed.checkbox || false,
   };
 }
 
