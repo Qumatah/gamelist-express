@@ -191,3 +191,24 @@ function getGameObject(gamedata) {
     completed: gamedata?.properties?.completed.checkbox || false,
   };
 }
+
+router.get("/ll/:id", (req, res) => {
+  notion = new Client({
+    auth: "secret_3Chdy721CTWbWAqsfwox0pCiVedTyLVXIIl58D7joY3",
+  });
+  (async () => {
+    const result = await getNotionLLData();
+
+    res.json(result.results);
+  })();
+});
+
+async function getNotionLLData(next_cursor) {
+  const result = await notion.databases.query({
+    database_id: "1166b583229a80f4a431e9b43908ff61",
+    start_cursor: next_cursor,
+    sorts: [],
+  });
+
+  return result;
+}
