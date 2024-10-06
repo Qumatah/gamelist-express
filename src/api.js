@@ -196,16 +196,22 @@ function getGameObject(gamedata) {
  * LL STUFF
  */
 
-//get data
-router.get("/ll/:token", (req, res) => {
+//get data based on userid
+router.get("/ll/:userid", (req, res) => {
   notion = new Client({
     auth: "secret_3Chdy721CTWbWAqsfwox0pCiVedTyLVXIIl58D7joY3",
   });
   (async () => {
     const data = await getNotionLLData();
     const trimmedResult = [];
+    const userId = req.params.userid;
     data.results.forEach((entry) => {
-      trimmedResult.push(getLLBuild(entry));
+      if (
+        entry.properties.userid.rich_text[0].plain_text === userId ||
+        userId === "all"
+      ) {
+        trimmedResult.push(getLLBuild(entry));
+      }
     });
     res.json(trimmedResult);
   })();
@@ -222,10 +228,15 @@ router.post("/ll/add/", (req, res) => {
 
   (async () => {
     const data = await getNotionLLData();
+    const userIdToLookFor = requestBody.userid;
     const nameToLookFor = requestBody.name;
     let foundId = null;
     data.results.forEach((page) => {
-      if (page.properties.name.title[0].plain_text === nameToLookFor) {
+      console.log(page.properties);
+      if (
+        page.properties.userid.rich_text[0].plain_text === userIdToLookFor &&
+        page.properties.name.title[0].plain_text === nameToLookFor
+      ) {
         foundId = page.id;
       }
     });
@@ -266,10 +277,14 @@ router.post("/ll/delete/", (req, res) => {
 
   (async () => {
     const data = await getNotionLLData();
+    const userIdToLookFor = requestBody.userid;
     const nameToLookFor = requestBody.name;
     let foundId = null;
     data.results.forEach((page) => {
-      if (page.properties.name.title[0].plain_text === nameToLookFor) {
+      if (
+        page.properties.userid.rich_text[0].plain_text === userIdToLookFor &&
+        page.properties.name.title[0].plain_text === nameToLookFor
+      ) {
         foundId = page.id;
       }
     });
@@ -317,6 +332,15 @@ function getLLBuild(build) {
 
 function getPropertiesObject(data) {
   return {
+    userid: {
+      type: "rich_text",
+      rich_text: [
+        {
+          type: "text",
+          text: { content: data.userid, link: null },
+        },
+      ],
+    },
     name: {
       title: [
         {
