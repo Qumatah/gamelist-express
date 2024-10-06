@@ -1,0 +1,24 @@
+post http://localhost:9000/api/ll/add/
+Content-Type: application/json
+
+{
+    "name": "blepper",
+    "hp": 90,
+    "race": 1,
+    "level": 3,
+    "core": "1,2,3,4,5,6",
+    "class": "1,2,3",
+    "skill": "1,10,20",
+    "ability": "1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6",
+    "element": "0,0,0,0,0,0",
+    "equipment": "1,2,3,1,2,3",
+    "filter": "2,1,2,2,1,1,1",
+    "cooldown": "2,2,2,2,2,2,2"
+}
+
+# post http://localhost:9000/api/ll/delete/
+# Content-Type: application/json
+
+# {
+#     "name": "blepper"
+# }

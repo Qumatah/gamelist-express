@@ -192,6 +192,112 @@ function getGameObject(gamedata) {
   };
 }
 
+/**
+ * LL STUFF
+ */
+
+//get data
+router.get("/ll/:token", (req, res) => {
+  notion = new Client({
+    auth: "secret_3Chdy721CTWbWAqsfwox0pCiVedTyLVXIIl58D7joY3",
+  });
+  (async () => {
+    const data = await getNotionLLData();
+    const trimmedResult = [];
+    data.results.forEach((entry) => {
+      trimmedResult.push(getLLBuild(entry));
+    });
+    res.json(trimmedResult);
+  })();
+});
+
+//add / update
+router.post("/ll/add/", (req, res) => {
+  notion = new Client({
+    auth: "secret_3Chdy721CTWbWAqsfwox0pCiVedTyLVXIIl58D7joY3",
+  });
+
+  const requestBody = JSON.parse(req.body);
+  console.log(requestBody);
+
+  (async () => {
+    const data = await getNotionLLData();
+    const nameToLookFor = requestBody.name;
+    let foundId = null;
+    data.results.forEach((page) => {
+      if (page.properties.name.title[0].plain_text === nameToLookFor) {
+        foundId = page.id;
+      }
+    });
+    if (foundId) {
+      console.log(
+        nameToLookFor,
+        "is found in NOTION! please update using:",
+        foundId
+      );
+      const response = await notion.pages.update({
+        page_id: foundId,
+        properties: getPropertiesObject(requestBody),
+      });
+    } else {
+      console.log(nameToLookFor, "is not found in NOTION!");
+      const response = await notion.pages.create({
+        parent: {
+          type: "database_id",
+          database_id: "1166b583229a80f4a431e9b43908ff61",
+        },
+        properties: getPropertiesObject(requestBody),
+      });
+    }
+  })();
+  res.send({
+    message: "New user was added to the list",
+  });
+});
+
+// delete
+router.post("/ll/delete/", (req, res) => {
+  notion = new Client({
+    auth: "secret_3Chdy721CTWbWAqsfwox0pCiVedTyLVXIIl58D7joY3",
+  });
+
+  const requestBody = JSON.parse(req.body);
+  console.log(requestBody);
+
+  (async () => {
+    const data = await getNotionLLData();
+    const nameToLookFor = requestBody.name;
+    let foundId = null;
+    data.results.forEach((page) => {
+      if (page.properties.name.title[0].plain_text === nameToLookFor) {
+        foundId = page.id;
+      }
+    });
+    if (foundId) {
+      console.log(nameToLookFor, "is found in NOTION! will delete!", foundId);
+      const response = await notion.pages.update({
+        page_id: foundId,
+        in_trash: true,
+        archived: true,
+      });
+    } else {
+      console.log(nameToLookFor, "was not found, nothing to delete!");
+    }
+  })();
+  res.send({
+    message: "User was deleted from the list",
+  });
+});
+
+async function getNotionLLData() {
+  const result = await notion.databases.query({
+    database_id: "1166b583229a80f4a431e9b43908ff61",
+    sorts: [],
+  });
+
+  return result;
+}
+
 function getLLBuild(build) {
   return {
     id: build.id,
@@ -209,26 +315,97 @@ function getLLBuild(build) {
   };
 }
 
-router.get("/ll/:id", (req, res) => {
-  notion = new Client({
-    auth: "secret_3Chdy721CTWbWAqsfwox0pCiVedTyLVXIIl58D7joY3",
-  });
-  (async () => {
-    const data = await getNotionLLData();
-    const trimmedResult = [];
-    data.results.forEach((entry) => {
-      trimmedResult.push(getLLBuild(entry));
-    });
-    res.json(trimmedResult);
-  })();
-});
-
-async function getNotionLLData(next_cursor) {
-  const result = await notion.databases.query({
-    database_id: "1166b583229a80f4a431e9b43908ff61",
-    start_cursor: next_cursor,
-    sorts: [],
-  });
-
-  return result;
+function getPropertiesObject(data) {
+  return {
+    name: {
+      title: [
+        {
+          text: {
+            content: data.name,
+          },
+        },
+      ],
+    },
+    hp: {
+      number: data.hp,
+    },
+    race: {
+      number: data.race,
+    },
+    level: {
+      number: data.level,
+    },
+    core: {
+      type: "rich_text",
+      rich_text: [
+        {
+          type: "text",
+          text: { content: data.core, link: null },
+        },
+      ],
+    },
+    class: {
+      type: "rich_text",
+      rich_text: [
+        {
+          type: "text",
+          text: { content: data.class, link: null },
+        },
+      ],
+    },
+    skill: {
+      type: "rich_text",
+      rich_text: [
+        {
+          type: "text",
+          text: { content: data.skill, link: null },
+        },
+      ],
+    },
+    ability: {
+      type: "rich_text",
+      rich_text: [
+        {
+          type: "text",
+          text: { content: data.ability, link: null },
+        },
+      ],
+    },
+    element: {
+      type: "rich_text",
+      rich_text: [
+        {
+          type: "text",
+          text: { content: data.element, link: null },
+        },
+      ],
+    },
+    equipment: {
+      type: "rich_text",
+      rich_text: [
+        {
+          type: "text",
+          text: { content: data.equipment, link: null },
+        },
+      ],
+    },
+    filter: {
+      type: "rich_text",
+      rich_text: [
+        {
+          type: "text",
+          text: { content: data.filter, link: null },
+        },
+      ],
+    },
+    cooldown: {
+      type: "rich_text",
+      rich_text: [
+        {
+          type: "text",
+          text: { content: data.cooldown, link: null },
+        },
+      ],
+    },
+  };
 }
