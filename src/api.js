@@ -318,6 +318,7 @@ function getLLBuild(build) {
     id: build.id,
     name: build.properties?.name.title[0].plain_text || "",
     hp: build.properties?.hp.number || 0,
+    shield: build.properties?.shield.number || 0,
     level: build.properties?.level.number || 0,
     core: build.properties?.core.rich_text[0].plain_text || "",
     class: build.properties?.class.rich_text[0].plain_text || "",
@@ -327,6 +328,14 @@ function getLLBuild(build) {
     equipment: build.properties?.equipment.rich_text[0].plain_text || "",
     filter: build.properties?.filter.rich_text[0].plain_text || "",
     cooldown: build.properties?.cooldown.rich_text[0].plain_text || "",
+    artifact: build.properties?.artifact.rich_text[0].plain_text || "",
+    trinket: build.properties?.trinket.rich_text[0].plain_text || "",
+    set: build.properties?.set.rich_text[0].plain_text || "",
+    item: build.properties?.item.rich_text[0].plain_text || "",
+    grace: build.properties?.grace.rich_text[0].plain_text || "",
+    buff: build.properties?.buff.rich_text[0].plain_text || "",
+    note: build.properties?.note.rich_text[0].plain_text || "",
+    setting: build.properties?.setting.rich_text[0].plain_text || "",
   };
 }
 
@@ -352,6 +361,9 @@ function getPropertiesObject(data) {
     },
     hp: {
       number: data.hp,
+    },
+    shield: {
+      number: data.shield,
     },
     race: {
       number: data.race,
@@ -428,6 +440,78 @@ function getPropertiesObject(data) {
         {
           type: "text",
           text: { content: data.cooldown, link: null },
+        },
+      ],
+    },
+    artifact: {
+      type: "rich_text",
+      rich_text: [
+        {
+          type: "text",
+          text: { content: data.artifact, link: null },
+        },
+      ],
+    },
+    trinket: {
+      type: "rich_text",
+      rich_text: [
+        {
+          type: "text",
+          text: { content: data.trinket, link: null },
+        },
+      ],
+    },
+    set: {
+      type: "rich_text",
+      rich_text: [
+        {
+          type: "text",
+          text: { content: data.set, link: null },
+        },
+      ],
+    },
+    item: {
+      type: "rich_text",
+      rich_text: [
+        {
+          type: "text",
+          text: { content: data.item, link: null },
+        },
+      ],
+    },
+    grace: {
+      type: "rich_text",
+      rich_text: [
+        {
+          type: "text",
+          text: { content: data.grace, link: null },
+        },
+      ],
+    },
+    buff: {
+      type: "rich_text",
+      rich_text: [
+        {
+          type: "text",
+          text: { content: data.buff, link: null },
+        },
+      ],
+    },
+    note: {
+      type: "rich_text",
+      rich_text: [
+        {
+          type: "text",
+          text: { content: data.note, link: null },
+        },
+      ],
+    },
+    setting: {
+      type: "rich_text",
+      rich_text: [
+        {
+          type: "text",
+          text: { content: data.setting, link: null },
         },
       ],
     },
