@@ -1,38 +1,44 @@
-post http://localhost:9000/api/ll/add/
-Content-Type: application/json
-
-{
-    "userid": "102847439036004215451",
-    "name": "testor",
-    "hp": 100,
-    "shield": 99,
-    "race": 1,
-    "level": 8,
-    "core": "1,2,3,4,5,6",
-    "class": "26,13,25",
-    "skill": "201,203,202,205,206,208,98,99,102,101,103,104,194,195,198",
-    "ability": "1,2,3,4,5,5,6,3,6,4,3,3,3,3,3,1,1,6",
-    "element": "0,0,0,0,1,2",
-    "equipment": "1,0,98,59,61,85",
-    "filter": "1,1,1,2,2,2,1,1,1,1,1,1,1,1,",
-    "cooldown": "2,2,2,2,2,2,2",
-    "artifact": "4,52,9",
-    "trinket": "49,55",
-    "set": "Cool%20set%20of%20items˟less%20cool%20but%20still%20cool%20set",
-    "item": "a%20cool%20flask˟416%20worms%20in%20a%20can˟bag%20of%20magical%20coins˟Super%20duper%20rainbow%20cape%20with%20pockets˟Soem%20weird%20stone%20that%20changes%20it!!39s%20shape%20every%20day",
-    "grace": "This%20stuff%20is%20still%20in%20the%20game,%20but%20will%20be%20removed",
-    "buff": "movement^2^3,power^22^2,bonusshield^2^3",
-    "note": "Cool%20not%20bro",
-    "setting": "1,0,1,0,1"
-}
-
-# post http://localhost:9000/api/ll/delete/
+# post http://localhost:9000/api/ll/add/
 # Content-Type: application/json
 
 # {
-#     "userid": "102847439036004215450",
-#     "name": "blepper"
+#     "userid": "102847439036004215451",
+#     "name": "testor",
+#     "hp": 100,
+#     "shield": 99,
+#     "race": 1,
+#     "level": 8,
+#     "core": "1,2,3,4,5,6",
+#     "class": "26,13,25",
+#     "skill": "201,203,202,205,206,208,98,99,102,101,103,104,194,195,198",
+#     "ability": "1,2,3,4,5,5,6,3,6,4,3,3,3,3,3,1,1,6",
+#     "element": "0,0,0,0,1,2",
+#     "equipment": "1,0,98,59,61,85",
+#     "filter": "1,1,1,2,2,2,1,1,1,1,1,1,1,1,",
+#     "cooldown": "2,2,2,2,2,2,2",
+#     "artifact": "4,52,9",
+#     "trinket": "49,55",
+#     "set": "Cool%20set%20of%20items˟less%20cool%20but%20still%20cool%20set",
+#     "item": "a%20cool%20flask˟416%20worms%20in%20a%20can˟bag%20of%20magical%20coins˟Super%20duper%20rainbow%20cape%20with%20pockets˟Soem%20weird%20stone%20that%20changes%20it!!39s%20shape%20every%20day",
+#     "grace": "This%20stuff%20is%20still%20in%20the%20game,%20but%20will%20be%20removed",
+#     "buff": "movement^2^3,power^22^2,bonusshield^2^3",
+#     "note": "Cool%20not%20bro",
+#     "setting": "1,0,1,0,1"
 # }
+
+get http://localhost:9000/api/ll/delete/102847439036004215450/yjioum100
+Content-Type: application/json
+
+get  https://gamelist-express.netlify.app/api/ll/delete/102847439036004215450/yjioum100
+Content-Type: application/json
+
+#  post https://gamelist-express.netlify.app/api/ll/delete
+#  Content-Type: application/json
+
+#  {
+#      "userid": "102847439036004215450",
+#      "name": "yjioum3"
+#  }
 
 # https://latelegends.com/legend-builder/
 # ?name=testor

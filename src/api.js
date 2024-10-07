@@ -268,18 +268,15 @@ router.post("/ll/add/", (req, res) => {
 });
 
 // delete
-router.post("/ll/delete/", (req, res) => {
+router.get("/ll/delete/:userid/:name", (req, res) => {
   notion = new Client({
     auth: "secret_3Chdy721CTWbWAqsfwox0pCiVedTyLVXIIl58D7joY3",
   });
 
-  const requestBody = JSON.parse(req.body);
-  console.log(requestBody);
-
   (async () => {
     const data = await getNotionLLData();
-    const userIdToLookFor = requestBody.userid;
-    const nameToLookFor = requestBody.name;
+    const userIdToLookFor = req.params.userid;
+    const nameToLookFor = req.params.name;
     let foundId = null;
     data.results.forEach((page) => {
       if (
@@ -294,15 +291,23 @@ router.post("/ll/delete/", (req, res) => {
       const response = await notion.pages.update({
         page_id: foundId,
         in_trash: true,
-        archived: true,
       });
+
+      if (response.in_trash && response.in_trash) {
+        res.send({
+          message: `${response.properties.name.title[0].plain_text} has been removed from ${response.properties.userid.rich_text[0].plain_text}`,
+        });
+      } else {
+        res.send({
+          message: `Something went wrong when deleting ${nameToLookFor}, nothing deleted...`,
+        });
+      }
     } else {
-      console.log(nameToLookFor, "was not found, nothing to delete!");
+      res.send({
+        message: `${nameToLookFor} was not found, nothing to delete!`,
+      });
     }
   })();
-  res.send({
-    message: "User was deleted from the list",
-  });
 });
 
 async function getNotionLLData() {
