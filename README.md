@@ -1,5 +1,7 @@
 # Install
 
+npm install -g netlify-cli
+
 npm install
 
 This question has more than 30 answers, most suggesting to either downgrade Node.js to pre v17 or to use the legacy SSL provider. Both of those solutions are hacks that leave your builds open to security threats.
