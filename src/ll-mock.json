@@ -101,7 +101,7 @@
           }
         ]
       },
-      "hp": { "id": "gEq%3D", "type": "number", "number": 11 },
+      "health": { "id": "gEq%3D", "type": "number", "number": 11 },
       "race": { "id": "h_kh", "type": "number", "number": 1 },
       "skill": {
         "id": "qIxm",
@@ -316,7 +316,7 @@
           }
         ]
       },
-      "hp": { "id": "gEq%3D", "type": "number", "number": 178 },
+      "health": { "id": "gEq%3D", "type": "number", "number": 178 },
       "race": { "id": "h_kh", "type": "number", "number": 2 },
       "skill": {
         "id": "qIxm",

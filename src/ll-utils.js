@@ -1,40 +1,33 @@
 export function getLLBuild(build) {
   return {
     id: build.id,
-    name: build.properties?.name.title[0].plain_text || "",
-    hp: build.properties?.hp.number || 0,
+    userid: build.properties?.userid.rich_text[0].plain_text || null,
+    name: build.properties?.name.title[0].plain_text || null,
+    health: build.properties?.health.number || 0,
     shield: build.properties?.shield.number || 0,
+    race: build.properties?.race.number || 0,
     level: build.properties?.level.number || 0,
-    core: build.properties?.core.rich_text[0].plain_text || "",
-    class: build.properties?.class.rich_text[0].plain_text || "",
-    skill: build.properties?.skill.rich_text[0].plain_text || "",
-    ability: build.properties?.ability.rich_text[0].plain_text || "",
-    element: build.properties?.element.rich_text[0].plain_text || "",
-    equipment: build.properties?.equipment.rich_text[0].plain_text || "",
-    filter: build.properties?.filter.rich_text[0].plain_text || "",
-    cooldown: build.properties?.cooldown.rich_text[0].plain_text || "",
-    artifact: build.properties?.artifact.rich_text[0].plain_text || "",
-    trinket: build.properties?.trinket.rich_text[0].plain_text || "",
-    set: build.properties?.set.rich_text[0].plain_text || "",
-    item: build.properties?.item.rich_text[0].plain_text || "",
-    grace: build.properties?.grace.rich_text[0].plain_text || "",
-    buff: build.properties?.buff.rich_text[0].plain_text || "",
-    note: build.properties?.note.rich_text[0].plain_text || "",
-    setting: build.properties?.setting.rich_text[0].plain_text || "",
+    core: build.properties?.core.rich_text[0].plain_text || null,
+    class: build.properties?.class.rich_text[0].plain_text || null,
+    skill: build.properties?.skill.rich_text[0].plain_text || null,
+    ability: build.properties?.ability.rich_text[0].plain_text || null,
+    element: build.properties?.element.rich_text[0].plain_text || null,
+    equipment: build.properties?.equipment.rich_text[0].plain_text || null,
+    filter: build.properties?.filter.rich_text[0].plain_text || null,
+    cooldown: build.properties?.cooldown.rich_text[0].plain_text || null,
+    artifact: build.properties?.artifact.rich_text[0].plain_text || null,
+    trinket: build.properties?.trinket.rich_text[0].plain_text || null,
+    set: build.properties?.set.rich_text[0].plain_text || null,
+    item: build.properties?.item.rich_text[0].plain_text || null,
+    grace: build.properties?.grace.rich_text[0].plain_text || null,
+    buff: build.properties?.buff.rich_text[0].plain_text || null,
+    note: build.properties?.note.rich_text[0].plain_text || null,
+    setting: build.properties?.setting.rich_text[0].plain_text || null,
   };
 }
 
 export function getPropertiesObject(data) {
   return {
-    userid: {
-      type: "rich_text",
-      rich_text: [
-        {
-          type: "text",
-          text: { content: data.userid, link: null },
-        },
-      ],
-    },
     name: {
       title: [
         {
@@ -44,8 +37,17 @@ export function getPropertiesObject(data) {
         },
       ],
     },
-    hp: {
-      number: data.hp,
+    userid: {
+      type: "rich_text",
+      rich_text: [
+        {
+          type: "text",
+          text: { content: data.userid, link: null },
+        },
+      ],
+    },
+    health: {
+      number: data.health,
     },
     shield: {
       number: data.shield,

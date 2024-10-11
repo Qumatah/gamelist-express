@@ -225,7 +225,6 @@ router.post("/ll/add/", (req, res) => {
   });
 
   const requestBody = JSON.parse(req.body);
-  console.log(requestBody);
 
   (async () => {
     const data = await getNotionLLData();
@@ -233,7 +232,6 @@ router.post("/ll/add/", (req, res) => {
     const nameToLookFor = requestBody.name;
     let foundId = null;
     data.results.forEach((page) => {
-      console.log(page.properties);
       if (
         page.properties.userid.rich_text[0].plain_text === userIdToLookFor &&
         page.properties.name.title[0].plain_text === nameToLookFor
@@ -241,19 +239,20 @@ router.post("/ll/add/", (req, res) => {
         foundId = page.id;
       }
     });
+    let response;
     if (foundId) {
       console.log(
         nameToLookFor,
         "is found in NOTION! please update using:",
         foundId
       );
-      const response = await notion.pages.update({
+      response = await notion.pages.update({
         page_id: foundId,
         properties: getPropertiesObject(requestBody),
       });
     } else {
       console.log(nameToLookFor, "is not found in NOTION!");
-      const response = await notion.pages.create({
+      response = await notion.pages.create({
         parent: {
           type: "database_id",
           database_id: "1166b583229a80f4a431e9b43908ff61",
@@ -261,10 +260,13 @@ router.post("/ll/add/", (req, res) => {
         properties: getPropertiesObject(requestBody),
       });
     }
+
+    console.log(response);
+
+    res.send({
+      message: "New user was added to the list",
+    });
   })();
-  res.send({
-    message: "New user was added to the list",
-  });
 });
 
 // delete

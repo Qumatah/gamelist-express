@@ -4,7 +4,7 @@
 # {
 #     "userid": "102847439036004215451",
 #     "name": "testor",
-#     "hp": 100,
+#     "health": 100,
 #     "shield": 99,
 #     "race": 1,
 #     "level": 8,
@@ -42,7 +42,7 @@ Content-Type: application/json
 
 # https://latelegends.com/legend-builder/
 # ?name=testor
-# &hp=500
+# &health=500
 # &shield=500
 # &race=1
 # &level=8
