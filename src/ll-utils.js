@@ -165,15 +165,6 @@ export function getPropertiesObject(data) {
         },
       ],
     },
-    grace: {
-      type: "rich_text",
-      rich_text: [
-        {
-          type: "text",
-          text: { content: data.grace, link: null },
-        },
-      ],
-    },
     buff: {
       type: "rich_text",
       rich_text: [
